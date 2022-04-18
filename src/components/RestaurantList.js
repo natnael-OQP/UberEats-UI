@@ -18,6 +18,7 @@ const RestaurantList = () => {
                     />
                 )}
                 keyExtractor={(item) => item.id}
+                showsVerticalScrollIndicator={false}
             />
         </View>
     )
