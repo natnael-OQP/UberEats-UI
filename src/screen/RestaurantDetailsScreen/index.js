@@ -1,37 +1,33 @@
-import { StyleSheet, Text, View, FlatList, Image } from 'react-native'
+import { StyleSheet, View, FlatList } from 'react-native'
 import restaurants from '../../assets/data/restaurants'
+import MenuItem from '../../components/MenuItem'
 
-import { Ionicons } from '@expo/vector-icons'
-
-const restaurant = restaurants[0]
+import Header from './Header'
 
 const RestaurantDetailsScreen = () => {
+    const restaurant = restaurants[0]
     return (
         <View style={styles.screen}>
-            <View style={styles.imageContainer}>
-                <Image
-                    style={styles.image}
-                    source={{ uri: restaurant.image }}
-                />
-                <View style={styles.iconContainer}>
-                    <Ionicons
-                        name="arrow-back-circle"
-                        size={45}
-                        color="white"
+            <FlatList
+                ListHeaderComponent={() => (
+                    <Header
+                        image={restaurant.image}
+                        name={restaurant.name}
+                        rating={restaurant.rating}
                     />
-                </View>
-            </View>
-            {/* info */}
-            <View style={styles.infoContainer}>
-                <Text style={styles.title} numberOfLines={1}>
-                    {restaurant.name}
-                </Text>
-                <Text style={styles.subTitle}>
-                    $ ${restaurant.deliveryFee} &#8226;{' '}
-                    {restaurant.minDeliveryTime} - {restaurant.maxDeliveryTime}{' '}
-                    minutes
-                </Text>
-            </View>
+                )}
+                data={restaurant.dishes}
+                keyExtractor={(item) => item.name}
+                renderItem={({ item }) => (
+                    <MenuItem
+                        name={item.name}
+                        description={item.description}
+                        price={item.price}
+                        image={item.image}
+                    />
+                )}
+                showsVerticalScrollIndicator={false}
+            />
         </View>
     )
 }
@@ -42,28 +38,7 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
     },
-    imageContainer: {
-        position: 'relative',
+    menu: {
+        marginHorizontal: 12,
     },
-    iconContainer: {
-        top: 20,
-        left: 20,
-    },
-    image: {
-        width: '100%',
-        aspectRatio: 5 / 3,
-    },
-    infoContainer: {
-        paddingHorizontal: 10,
-    },
-    title: {
-        fontSize: 27,
-        fontWeight: '600',
-        marginVertical: 10,
-    },
-    subTitle: {
-        fontSize: 15,
-        color: 'gray',
-    },
-    // subTitle: {},
 })
