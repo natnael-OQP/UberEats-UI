@@ -5,7 +5,7 @@ import { AntDesign } from '@expo/vector-icons'
 import Separator from '../components/Separator'
 
 const MenuItemDetailedScreen = () => {
-    const [quantity, setQuantity] = useState(0)
+    const [quantity, setQuantity] = useState(1)
     const price = 23.5
 
     const onMinus = () => {
@@ -52,7 +52,7 @@ const MenuItemDetailedScreen = () => {
             </View>
             <View style={styles.button}>
                 <Text style={styles.buttonText}>
-                    Add {quantity} to basket ({getTotal()})
+                    Add {quantity} to basket &#8226; {getTotal()}
                 </Text>
             </View>
         </View>
