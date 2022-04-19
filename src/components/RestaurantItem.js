@@ -7,6 +7,7 @@ const RestaurantItem = ({
     deliveryFee,
     minDeliveryTime,
     maxDeliveryTime,
+    rating,
     onPress,
 }) => {
     return (
@@ -14,11 +15,13 @@ const RestaurantItem = ({
             <Image style={styles.image} source={{ uri: image }} />
             <View style={styles.infoContainer}>
                 <Text style={styles.title}>{name}</Text>
-                <Text style={styles.subTitle}>
-                    $ ${deliveryFee} &#8226; {minDeliveryTime} -{' '}
-                    {maxDeliveryTime}
-                </Text>
+                <View style={styles.ratingContainer}>
+                    <Text style={styles.rating}>{rating}</Text>
+                </View>
             </View>
+            <Text style={styles.subTitle}>
+                $ ${deliveryFee} &#8226; {minDeliveryTime} - {maxDeliveryTime}
+            </Text>
         </TouchableOpacity>
     )
 }
@@ -37,7 +40,11 @@ const styles = StyleSheet.create({
         aspectRatio: 5 / 3,
         marginVertical: 5,
     },
-    infoContainer: {},
+    infoContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
     title: {
         fontSize: 16,
         fontWeight: '500',
@@ -46,4 +53,13 @@ const styles = StyleSheet.create({
     subTitle: {
         color: 'gray',
     },
+    ratingContainer: {
+        width: 30,
+        height: 30,
+        backgroundColor: 'lightgray',
+        borderRadius: 15,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    rating: {},
 })
