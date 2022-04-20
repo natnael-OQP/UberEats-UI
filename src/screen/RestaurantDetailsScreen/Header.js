@@ -2,14 +2,18 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import Separator from '../../components/Separator'
 import { FontAwesome } from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native'
 
 const Header = ({ image, name, rating }) => {
+    const navigation = useNavigation()
+
     return (
         <View style={styles.header}>
             <View style={styles.imageContainer}>
                 <Image style={styles.image} source={{ uri: image }} />
                 <View style={styles.iconContainer}>
                     <Ionicons
+                        onPress={() => navigation.goBack()}
                         name="arrow-back-circle"
                         size={35}
                         color="white"
