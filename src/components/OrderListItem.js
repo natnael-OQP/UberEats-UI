@@ -1,8 +1,11 @@
 import { View, Text, Image, Pressable } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 const OrderListItem = ({ order }) => {
+    const navigation = useNavigation()
     return (
         <Pressable
+            onPress={() => navigation.navigate('OrderDetail')}
             style={{
                 flexDirection: 'row',
                 marginHorizontal: 10,
