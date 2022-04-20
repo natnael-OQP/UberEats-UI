@@ -1,11 +1,12 @@
 import { StyleSheet, View, FlatList } from 'react-native'
-import restaurants from '../../assets/data/restaurants'
 import MenuItem from '../../components/MenuItem'
 
 import Header from './Header'
 
-const RestaurantDetailsScreen = () => {
-    const restaurant = restaurants[0]
+const RestaurantDetailsScreen = ({ route }) => {
+    const { params } = route
+    const restaurant = params.item
+
     return (
         <View style={styles.screen}>
             <FlatList
