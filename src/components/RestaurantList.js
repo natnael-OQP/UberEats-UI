@@ -1,14 +1,19 @@
 import { FlatList, View } from 'react-native'
 import RestaurantItem from './RestaurantItem'
 
+import { useNavigation } from '@react-navigation/native'
+
 const RestaurantList = ({ data }) => {
+    const navigation = useNavigation()
     return (
         <View>
             <FlatList
                 data={data}
                 renderItem={({ item }) => (
                     <RestaurantItem
-                        onPress={() => console.log(item.name)}
+                        onPress={() =>
+                            navigation.navigate('Restaurant', { item })
+                        }
                         image={item.image}
                         name={item.name}
                         deliveryFee={item.deliveryFee}
